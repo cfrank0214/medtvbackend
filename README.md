@@ -67,7 +67,7 @@ curl -X POST https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos --da
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
+{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
 ```
 
 ### List all Videos
@@ -78,7 +78,7 @@ curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos
 
 Example output:
 ```bash
-[{"text":"Deploy my first service","id":"ac90fe80-aa83-11e6-9ede-afdfa051af86","checked":true,"updatedAt":1479139961304},{"text":"Learn Serverless","id":"20679390-aa85-11e6-9ede-afdfa051af86","createdAt":1479139943241,"checked":false,"updatedAt":1479139943241}]%
+[{"text":"Deploy my first service","id":"ac90fe80-aa83-11e6-9ede-afdfa051af86","checked":true,"updatedAt":1479139961304},{"text":"Learn Serverless","id":"20679390-aa85-11e6-9ede-afdfa051af86","createdAt":1479139943241,"updatedAt":1479139943241}]%
 ```
 
 ### Get one video
@@ -97,12 +97,12 @@ Example Result:
 
 ```bash
 # Replace the <id> part with a real id from your Videos table
-curl -X PUT https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos/<id> --data '{ "text": "Learn Serverless", "checked": true }'
+curl -X PUT https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos/<id> --data '{ "text": "Learn Serverless" }'
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":true,"updatedAt":1479138570824}%
+{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
 ```
 
 ### Delete a video
