@@ -1,0 +1,8 @@
+.serverless
+node_modules
+coverage
+build
+npm-debug.log
+serverless-output.json
+.vscode
+yarn-error.log
