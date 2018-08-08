@@ -1,83 +1,82 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "version": "2018-08-07T18:25:59Z",
-      "title": "dev-medtvapi"
-    },
-    "host": "6patllbzkk.execute-api.us-east-1.amazonaws.com",
-    "basePath": "/dev",
-    "schemes": [
-      "https"
-    ],
-    "paths": {
-      "/videos": {
-        "get": {
-          "responses": {}
-        },
-        "post": {
-          "responses": {}
-        },
-        "options": {
-          "consumes": [
-            "application/json"
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 response",
-              "headers": {
-                "Access-Control-Allow-Origin": {
-                  "type": "string"
-                },
-                "Access-Control-Allow-Methods": {
-                  "type": "string"
-                },
-                "Access-Control-Allow-Credentials": {
-                  "type": "string"
-                },
-                "Access-Control-Allow-Headers": {
-                  "type": "string"
-                }
+  "swagger": "2.0",
+  "info": {
+    "version": "2018-08-08T00:46:46Z",
+    "title": "qa-medtvapi"
+  },
+  "host": "n1mr20dqxh.execute-api.us-east-2.amazonaws.com",
+  "basePath": "/qa",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/videos": {
+      "get": {
+        "responses": {}
+      },
+      "post": {
+        "responses": {}
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Credentials": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
               }
             }
           }
         }
+      }
+    },
+    "/videos/{id}": {
+      "get": {
+        "responses": {}
       },
-      "/videos/{id}": {
-        "get": {
-          "responses": {}
-        },
-        "put": {
-          "responses": {}
-        },
-        "delete": {
-          "responses": {}
-        },
-        "options": {
-          "consumes": [
-            "application/json"
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 response",
-              "headers": {
-                "Access-Control-Allow-Origin": {
-                  "type": "string"
-                },
-                "Access-Control-Allow-Methods": {
-                  "type": "string"
-                },
-                "Access-Control-Allow-Credentials": {
-                  "type": "string"
-                },
-                "Access-Control-Allow-Headers": {
-                  "type": "string"
-                }
+      "put": {
+        "responses": {}
+      },
+      "delete": {
+        "responses": {}
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Credentials": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
               }
             }
           }
@@ -85,3 +84,4 @@
       }
     }
   }
+}
