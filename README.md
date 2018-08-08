@@ -35,18 +35,21 @@ sls deploy
 The expected result should be similar to:
 
 ```bash
+ "host": "n1mr20dqxh.execute-api.us-east-2.amazonaws.com",
+  "basePath": "/qa",
+
 Service Information
 service: serverless-rest-api-with-dynamodb
-stage: dev
+stage: qa
 region: us-east-1
 api keys:
   None
 endpoints:
-  POST - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/Videos
-  GET - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/Videos
-  GET - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/Videos/{id}
-  PUT - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/Videos/{id}
-  DELETE - https://45wf34z5yf.execute-api.us-east-1.amazonaws.com/dev/Videos/{id}
+  POST - https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos
+  GET - https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos
+  GET - https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos/{id}
+  PUT - https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos/{id}
+  DELETE - https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos/{id}
 functions:
   serverless-rest-api-with-dynamodb-dev-update: arn:aws:lambda:us-east-1:488110005556:function:serverless-rest-api-with-dynamodb-dev-update
   serverless-rest-api-with-dynamodb-dev-get: arn:aws:lambda:us-east-1:488110005556:function:serverless-rest-api-with-dynamodb-dev-get
@@ -62,53 +65,80 @@ You can create, retrieve, update, or delete Videos with the following commands:
 ### Create a video
 
 ```bash
-curl -X POST https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos --data '{ "text": "Learn Serverless" }'
+serverless invoke local --function create --path mocks/post.json
+curl -X POST https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos --data '{
+    "body": "{\"title\":\"Surgi-Sim v3\",\"author\":\"Dr. John Smith\",\"uri\":\"https://youtu.be/Zd39HhAUFl0\",\"video_duration\":\"145\",\"video_description\":\"VARISES is helping create better-trained surgeons and surgical staff to meet the rapidly growing demand for procedures such as joint replacement surgeries.\"}"
+}'
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
+{
+    "statusCode": 200,
+    "body": "{\"id\":\"d4610490-9b5a-11e8-8a58-ad1a07d0567b\",\"createdAt\":1533767504729,\"updatedAt\":1533767504729,\"title\":\"Surgi-Sim v3\",\"author\":\"Dr. John Smith\",\"uri\":\"https://youtu.be/Zd39HhAUFl0\",\"video_duration\":\"145\",\"video_description\":\"VARISES is helping create better-trained surgeons and surgical staff to meet the rapidly growing demand for procedures such as joint replacement surgeries.\"}"
+}
 ```
 
 ### List all Videos
 
 ```bash
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos
+serverless invoke local --function list --path mocks/get-all.json
+curl https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos
 ```
 
 Example output:
 ```bash
-[{"text":"Deploy my first service","id":"ac90fe80-aa83-11e6-9ede-afdfa051af86","checked":true,"updatedAt":1479139961304},{"text":"Learn Serverless","id":"20679390-aa85-11e6-9ede-afdfa051af86","createdAt":1479139943241,"updatedAt":1479139943241}]%
+{
+    "statusCode": 200,
+    "body": "[{\"updatedAt\":1533767084626,\"createdAt\":1533767084626,\"uri\":\"https://youtu.be/Zd39HhAUFl0\",\"id\":\"d9fa8a30-9b59-11e8-9295-a70b67ebe25c\",\"video_duration\":\"145\",\"video_description\":\"VARISES is helping create better-trained surgeons and surgical staff to meet the rapidly growing demand for procedures such as joint replacement surgeries.\",\"author\":\"Dr. John Smith\",\"title\":\"Surgi-Sim v3\"},{\"updatedAt\":1533767272781,\"createdAt\":1533767272781,\"uri\":\"https://youtu.be/Zd39HhAUFl0\",\"id\":\"4a20b6e0-9b5a-11e8-9e53-b31a3b009369\",\"video_duration\":\"145\",\"video_description\":\"VARISES is helping create better-trained surgeons and surgical staff to meet the rapidly growing demand for procedures such as joint replacement surgeries.\",\"author\":\"Dr. John Smith\",\"title\":\"Surgi-Sim v3\"}]"
+}
 ```
 
 ### Get one video
 
 ```bash
+serverless invoke local --function get --path mocks/get.json
 # Replace the <id> part with a real id from your Videos table
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos/<id>
+curl https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos/<id>
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
+{
+    "statusCode": 200,
+    "body": "{\"updatedAt\":1533767084626,\"createdAt\":1533767084626,\"uri\":\"https://youtu.be/Zd39HhAUFl0\",\"id\":\"d9fa8a30-9b59-11e8-9295-a70b67ebe25c\",\"video_duration\":\"145\",\"video_description\":\"VARISES is helping create better-trained surgeons and surgical staff to meet the rapidly growing demand for procedures such as joint replacement surgeries.\",\"author\":\"Dr. John Smith\",\"title\":\"Surgi-Sim v3\"}"
+}
 ```
 
 ### Update a video
 
 ```bash
+serverless invoke local --function update --path mocks/put.json
 # Replace the <id> part with a real id from your Videos table
-curl -X PUT https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos/<id> --data '{ "text": "Learn Serverless" }'
+curl -X PUT https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos/<id> --data '{"pathParameters": { "id": "d9fa8a30-9b59-11e8-9295-a70b67ebe25c"}, "body": "{\"title\":\"Surgi-Sim v3\",\"author\":\"Dr. Chris Frank\",\"uri\":\"https://youtu.be/Zd39HhAUFl0\",\"video_duration\":\"145\",\"video_description\":\"VARISES is helping create better-trained surgeons and surgical staff to meet the rapidly growing demand for procedures such as joint replacement surgeries.\"}"}'
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa81-11e6-9ede-afdfa051af86","createdAt":1479138570824,"updatedAt":1479138570824}%
+{
+    "statusCode": 200,
+    "body": "{\"updatedAt\":1533768577041,\"createdAt\":1533767084626,\"uri\":\"https://youtu.be/Zd39HhAUFl0\",\"id\":\"d9fa8a30-9b59-11e8-9295-a70b67ebe25c\",\"video_duration\":\"145\",\"video_description\":\"VARISES is helping create better-trained surgeons and surgical staff to meet the rapidly growing demand for procedures such as joint replacement surgeries.\",\"author\":\"Dr. Chris Frank\",\"title\":\"Surgi-Sim v3\"}"
+}
 ```
 
 ### Delete a video
 
 ```bash
 # Replace the <id> part with a real id from your Videos table
-curl -X DELETE https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/Videos/<id>
+serverless invoke local --function delete --path mocks/delete.json
+curl -X DELETE https://n1mr20dqxh.execute-api.us-east-2.amazonaws.com/qa/Videos/<id>
 ```
 
+
+Example Result:
+```bash
+{
+    "statusCode": 200,
+    "body": "{}"
+}
+```

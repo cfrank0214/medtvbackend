@@ -8,27 +8,28 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
-  if (typeof data.text !== 'string') {
-    console.error('Validation Failed');
-    callback(null, {
-      statusCode: 400,
-      headers: { 'Content-Type': 'text/plain' },
-      body: 'Couldn\'t create the video item.',
-    });
-    return;
-  }
+  // if (typeof data.title !== 'string') {
+  //   console.error('Validation Failed');
+  //   callback(null, {
+  //     statusCode: 400,
+  //     headers: { 'Content-Type': 'text/json' },
+  //     body: 'Couldn\'t create the video item.',
+  //   });
+  //   return;
+  // }
 
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Item: {
       id: uuid.v1(),
-      title: data.text,
-      author: data.text,
-      uri: data.text,
-      video_duration: data.text, //seconds
-      video_description: data.text,
       createdAt: timestamp,
       updatedAt: timestamp,
+      title: data.title,
+      author: data.author,
+      uri: data.uri,
+      video_duration: data.video_duration, //seconds
+      video_description: data.video_description
+      
     },
   };
 
@@ -39,7 +40,7 @@ module.exports.create = (event, context, callback) => {
       console.error(error);
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { 'Content-Type': 'text/json' },
         body: 'Couldn\'t create the video item.',
       });
       return;

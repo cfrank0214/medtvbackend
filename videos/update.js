@@ -9,29 +9,31 @@ module.exports.update = (event, context, callback) => {
   const data = JSON.parse(event.body);
 
   // validation
-  if (typeof data.text !== 'string' || typeof data.checked !== 'boolean') {
-    console.error('Validation Failed');
-    callback(null, {
-      statusCode: 400,
-      headers: { 'Content-Type': 'text/plain' },
-      body: 'Couldn\'t update the video item.',
-    });
-    return;
-  }
+  // if (typeof data.text !== 'string' || typeof data.checked !== 'boolean') {
+  //   console.error('Validation Failed');
+  //   callback(null, {
+  //     statusCode: 400,
+  //     headers: { 'Content-Type': 'text/json' },
+  //     body: 'Couldn\'t update the video item.',
+  //   });
+  //   return;
+  // }
 
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Key: {
       id: event.pathParameters.id,
     },
-    ExpressionAttributeNames: {
-      '#video_description': 'text',
-    },
+ 
     ExpressionAttributeValues: {
-      ':video_description': data.text,
+      ':title': data.title,
+      ':author': data.author,
+      ':uri': data.uri,
+      ':video_duration': data.video_duration, //seconds
+      ':video_description': data.video_description,
       ':updatedAt': timestamp,
     },
-    UpdateExpression: 'SET #video_description = :text, updatedAt = :updatedAt',
+    UpdateExpression: 'SET title = :title, author = :author, uri = :uri, video_duration = :video_duration, video_description = :video_description, updatedAt = :updatedAt',
     ReturnValues: 'ALL_NEW',
   };
 
@@ -42,7 +44,7 @@ module.exports.update = (event, context, callback) => {
       console.error(error);
       callback(null, {
         statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { 'Content-Type': 'text/json' },
         body: 'Couldn\'t fetch the video item.',
       });
       return;
