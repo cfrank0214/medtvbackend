@@ -26,14 +26,18 @@ module.exports.update = (event, context, callback) => {
     },
  
     ExpressionAttributeValues: {
+      ':updatedAt': timestamp,
       ':title': data.title,
       ':author': data.author,
       ':uri': data.uri,
-      ':video_duration': data.video_duration, //seconds
-      ':video_description': data.video_description,
-      ':updatedAt': timestamp,
+      ':duration': data.video_duration, //seconds
+      ':description': data.video_description,
+      ':patient': { age: data.patient.age, gender: data.patient.gender },
+      ':location': { title: data.location.title, country: data.location.country, },
+      ':tags': data.tags, // an array of strings ["Heart", "Student", "Training", "VR"]
+      ':device': data.device  // medical device descripted as string "Medtronic MRI SureScan"
     },
-    UpdateExpression: 'SET title = :title, author = :author, uri = :uri, video_duration = :video_duration, video_description = :video_description, updatedAt = :updatedAt',
+    UpdateExpression: 'SET title = :title, author = :author, uri = :uri, duration = :duration, description = :description, updatedAt = :updatedAt, patient = :patient, location = :location, tags = :tags, device = :device',
     ReturnValues: 'ALL_NEW',
   };
 

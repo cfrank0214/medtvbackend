@@ -27,9 +27,12 @@ module.exports.create = (event, context, callback) => {
       title: data.title,
       author: data.author,
       uri: data.uri,
-      video_duration: data.video_duration, //seconds
-      video_description: data.video_description
-      
+      duration: data.video_duration, //seconds
+      description: data.video_description,
+      patient: { age: data.patient.age, gender: data.patient.gender },
+      location: { title: data.location.title, country: data.location.country, },
+      tags: data.tags, // an array of strings ["Heart", "Student", "Training", "VR", "Cardiology"]
+      device: data.device  // medical device descripted as string "Medtronic MRI SureScan"
     },
   };
 
