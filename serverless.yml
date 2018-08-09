@@ -2,6 +2,16 @@ service: medtvapi
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
+plugins:
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: api.medtv.me
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+
 provider:
   name: aws
   stage: qa

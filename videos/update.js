@@ -30,8 +30,8 @@ module.exports.update = (event, context, callback) => {
       ':title': data.title,
       ':author': data.author,
       ':uri': data.uri,
-      ':duration': data.video_duration, //seconds
-      ':description': data.video_description,
+      ':duration': data.duration, //seconds
+      ':description': data.description,
       ':patient': { age: data.patient.age, gender: data.patient.gender },
       ':location': { title: data.location.title, country: data.location.country, },
       ':tags': data.tags, // an array of strings ["Heart", "Student", "Training", "VR"]
