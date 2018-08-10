@@ -8,17 +8,6 @@ module.exports.update = (event, context, callback) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
 
-  // validation
-  // if (typeof data.text !== 'string' || typeof data.checked !== 'boolean') {
-  //   console.error('Validation Failed');
-  //   callback(null, {
-  //     statusCode: 400,
-  //     headers: { 'Content-Type': 'text/json' },
-  //     body: 'Couldn\'t update the video item.',
-  //   });
-  //   return;
-  // }
-
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Key: {
@@ -29,15 +18,15 @@ module.exports.update = (event, context, callback) => {
       ':updatedAt': timestamp,
       ':title': data.title,
       ':author': data.author,
-      ':uri': data.uri,
-      ':duration': data.duration, //seconds
+      ':vid_uri': data.vid_uri,
+      ':vid_duration': data.vid_duration, //seconds
       ':description': data.description,
       ':patient': { age: data.patient.age, gender: data.patient.gender },
-      ':location': { title: data.location.title, country: data.location.country, },
+      ':vid_location': { title: data.vid_location.title, country: data.vid_location.country, },
       ':tags': data.tags, // an array of strings ["Heart", "Student", "Training", "VR"]
       ':device': data.device  // medical device descripted as string "Medtronic MRI SureScan"
     },
-    UpdateExpression: 'SET title = :title, author = :author, uri = :uri, duration = :duration, description = :description, updatedAt = :updatedAt, patient = :patient, location = :location, tags = :tags, device = :device',
+    UpdateExpression: 'SET title = :title, author = :author, vid_uri = :vid_uri, vid_duration = :vid_duration, description = :description, updatedAt = :updatedAt, patient = :patient, vid_location = :vid_location, tags = :tags, device = :device',
     ReturnValues: 'ALL_NEW',
   };
 
