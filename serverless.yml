@@ -41,7 +41,7 @@ functions:
     handler: videos/list-test.list
     events:
       - http:
-          path: videos
+          path: videos/list-test
           method: get
           cors: true          
 
