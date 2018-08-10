@@ -142,3 +142,12 @@ Example Result:
     "body": "{}"
 }
 ```
+### Use the MedTV_Postman.json file
+How to get Postman working with this file:
+1. Open postman
+2. Click on import
+3. Choose file MedTV_Postman.json
+4. Open qa-medtvapi
+5. Open videos
+6. Open the second GET
+
