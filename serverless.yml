@@ -1,4 +1,6 @@
 service: medtvapi
+app: medtv-qa
+tenant: cfrank0214
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
