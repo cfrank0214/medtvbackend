@@ -18,6 +18,7 @@ module.exports.create = (event, context, callback) => {
       title: data.title,
       author: data.author,
       vid_uri: data.vid_uri,
+      vid_thumbnail_uri: data.vid_thumbnail_uri,
       vid_duration: data.vid_duration, //seconds
       description: data.description,
       patient: { age: data.patient.age, gender: data.patient.gender },

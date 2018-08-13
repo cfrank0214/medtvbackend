@@ -19,6 +19,7 @@ module.exports.update = (event, context, callback) => {
       ':title': data.title,
       ':author': data.author,
       ':vid_uri': data.vid_uri,
+      vid_thumbnail_uri: data.vid_thumbnail_uri,
       ':vid_duration': data.vid_duration, //seconds
       ':description': data.description,
       ':patient': { age: data.patient.age, gender: data.patient.gender },
@@ -26,7 +27,7 @@ module.exports.update = (event, context, callback) => {
       ':tags': data.tags, // an array of strings ["Heart", "Student", "Training", "VR"]
       ':device': data.device  // medical device descripted as string "Medtronic MRI SureScan"
     },
-    UpdateExpression: 'SET title = :title, author = :author, vid_uri = :vid_uri, vid_duration = :vid_duration, description = :description, updatedAt = :updatedAt, patient.age = :patient.age, patient.gender = :patient.gender, vid_location.title = :vid_location.title, vid_location.country = :vid_location.country, tags = :tags, device = :device',
+    UpdateExpression: 'SET title = :title, author = :author, vid_uri = :vid_uri, vid_thumbnail_uri = :vid_thumbnail_uri, vid_duration = :vid_duration, description = :description, updatedAt = :updatedAt, patient.age = :patient.age, patient.gender = :patient.gender, vid_location.title = :vid_location.title, vid_location.country = :vid_location.country, tags = :tags, device = :device',
     ReturnValues: 'ALL_NEW',
   };
 
