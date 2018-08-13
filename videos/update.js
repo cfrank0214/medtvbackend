@@ -26,7 +26,7 @@ module.exports.update = (event, context, callback) => {
       ':tags': data.tags, // an array of strings ["Heart", "Student", "Training", "VR"]
       ':device': data.device  // medical device descripted as string "Medtronic MRI SureScan"
     },
-    UpdateExpression: 'SET title = :title, author = :author, vid_uri = :vid_uri, vid_duration = :vid_duration, description = :description, updatedAt = :updatedAt, patient = :patient, vid_location = :vid_location, tags = :tags, device = :device',
+    UpdateExpression: 'SET title = :title, author = :author, vid_uri = :vid_uri, vid_duration = :vid_duration, description = :description, updatedAt = :updatedAt, patient.age = :patient.age, patient.gender = :patient.gender, vid_location.title = :vid_location.title, vid_location.country = :vid_location.country, tags = :tags, device = :device',
     ReturnValues: 'ALL_NEW',
   };
 
