@@ -14,20 +14,24 @@ module.exports.update = (event, context, callback) => {
       id: event.pathParameters.id,
     },
  
+    UpdateExpression: 'SET title = :title, author = :author, vid_uri = :vid_uri, vid_thumbnail_uri = :vid_thumbnail_uri, vid_duration = :vid_duration, description = :description, updatedAt = :updatedAt, patient.age = :age, patient.gender = :gender, vid_location.title = :loctitle, vid_location.country = :loccountry, tags = :tags, device = :device',
+
     ExpressionAttributeValues: {
       ':updatedAt': timestamp,
       ':title': data.title,
       ':author': data.author,
       ':vid_uri': data.vid_uri,
-      vid_thumbnail_uri: data.vid_thumbnail_uri,
+      ':vid_thumbnail_uri': data.vid_thumbnail_uri,
       ':vid_duration': data.vid_duration, //seconds
       ':description': data.description,
-      ':patient': { age: data.patient.age, gender: data.patient.gender },
-      ':vid_location': { title: data.vid_location.title, country: data.vid_location.country, },
+      ':age': data.patient.age,
+      ':gender': data.patient.gender,
+      ':loctitle': data.vid_location.title,
+      ':loccountry': data.vid_location.country,
       ':tags': data.tags, // an array of strings ["Heart", "Student", "Training", "VR"]
       ':device': data.device  // medical device descripted as string "Medtronic MRI SureScan"
     },
-    UpdateExpression: 'SET title = :title, author = :author, vid_uri = :vid_uri, vid_thumbnail_uri = :vid_thumbnail_uri, vid_duration = :vid_duration, description = :description, updatedAt = :updatedAt, patient.age = :patient.age, patient.gender = :patient.gender, vid_location.title = :vid_location.title, vid_location.country = :vid_location.country, tags = :tags, device = :device',
+    
     ReturnValues: 'ALL_NEW',
   };
 
