@@ -71,6 +71,14 @@ functions:
           method: delete
           cors: true
 
+  data-schema:
+    handler: videos/tags
+    events:
+      - http:
+          path: videos/tags
+          method: get
+          cors: true
+
 resources:
   Resources:
     TodosDynamoDbTable:
