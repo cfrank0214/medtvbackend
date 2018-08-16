@@ -47,6 +47,14 @@ functions:
           method: get
           cors: true          
 
+  get-tag:
+    handler: videos/get-tags.getByTags
+    events:
+      - http:
+          path: videos/{tag}
+          method: get
+          cors: true
+
   get:
     handler: videos/get.get
     events:
@@ -71,13 +79,7 @@ functions:
           method: delete
           cors: true
 
-  data-schema:
-    handler: videos/tags
-    events:
-      - http:
-          path: videos/tags
-          method: get
-          cors: true
+
 
 resources:
   Resources:
