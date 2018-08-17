@@ -37,15 +37,7 @@ functions:
       - http:
           path: videos
           method: get
-          cors: true
-
-  pagination:
-    handler: videos/pagination.pagination
-    events:
-      - http:
-          path: videos/pagination
-          method: get
-          cors: true          
+          cors: true        
 
   get:
     handler: videos/get.get
