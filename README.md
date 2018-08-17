@@ -5,18 +5,21 @@ layout: Doc
 -->
 # Med TV REST API
 
- A [RESTful Web Services](https://en.wikipedia.org/wiki/Representational_state_transfer#Applied_to_web_services) allowing you to create, list, get, update and delete Videos. DynamoDB is used to store the data. This is just an example and of course you could use any data storage as a backend.
+## www.medtv.me
 
-## Structure
+The idea is to make it easier for surgeons to learn and improve their skills. Surgeons can learn and practice their craft within a Virtual Reality (VR) environment.
+The goal of this capstone is to create a web-based experience  for users to see a list of videos. A user can select then play a video.
 
-This service has a separate directory for all the video operations. For each operation exactly one file exists e.g. `Videos/delete.js`. In each of these files there is exactly one function which is directly attached to `module.exports`.
+## Getting Started
 
-The idea behind the `Videos` directory is that in case you want to create a service containing multiple resources e.g. users, tags, comments you could do so in the same service. While this is certainly possible you might consider creating a separate service for each resource. It depends on the use-case and your preference.
+* Clone this repo
+```
+git clone git@github.com:cfrank1977/medtvbackend.git
+```
 
-## Use-cases
+### Prerequisites
 
-- API for a Web Application
-- API for a Mobile Application
+Serverless, AWS CLI, Node js
 
 ## Setup
 
@@ -151,3 +154,21 @@ How to get Postman working with this file:
 5. Open videos
 6. Open the second GET
 
+## Authors
+
+* **Dylan Morsini** - *Initial work* - [DJMORSINI](https://github.com/djmorosini)
+* **Florance Fong** - [FLOFONG](https://github.com/flofong)
+* **Julia Kantarovsky** - [JULIAKAN](https://github.com/JuliaKan)
+* **Chris Frank** - [CFRANK1977](https://github.com/cfrank1977)
+* **Matt Layden** - [KOBELLO](https://github.com/kobello)
+
+See also the list of [contributors](https://github.com/djmorosini/medtv-react-app/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Burlington Code Academy http://bootcamp.burlingtoncodeacademy.com
+* VCET http://vermonttechnologies.com

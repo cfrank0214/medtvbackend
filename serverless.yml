@@ -37,15 +37,7 @@ functions:
       - http:
           path: videos
           method: get
-          cors: true
-
-  list-test:
-    handler: videos/list-test.list
-    events:
-      - http:
-          path: videos/list-test
-          method: get
-          cors: true          
+          cors: true        
 
   get:
     handler: videos/get.get

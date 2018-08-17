@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "2018-08-10T18:42:14Z",
+    "version": "2018-08-17T18:56:56Z",
     "title": "qa-medtvapi"
   },
   "host": "n1mr20dqxh.execute-api.us-east-2.amazonaws.com",
@@ -15,38 +15,6 @@
         "responses": {}
       },
       "post": {
-        "responses": {}
-      },
-      "options": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "200 response",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "type": "string"
-              },
-              "Access-Control-Allow-Methods": {
-                "type": "string"
-              },
-              "Access-Control-Allow-Credentials": {
-                "type": "string"
-              },
-              "Access-Control-Allow-Headers": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/videos/list-test": {
-      "get": {
         "responses": {}
       },
       "options": {
