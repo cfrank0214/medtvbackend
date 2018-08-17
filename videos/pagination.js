@@ -3,10 +3,10 @@
 const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-let limit = 5;
-let startkey = null;
 
 module.exports.pagination = (event, context, callback) => {
+	let limit = 5;
+	let startkey = null;
 	if (event.queryStringParameters !== null && event.queryStringParameters !== undefined) {
 		if (
 			event.queryStringParameters.limit !== undefined &&
@@ -15,7 +15,7 @@ module.exports.pagination = (event, context, callback) => {
 		) {
 			console.log('Received limit: ' + event.queryStringParameters.limit);
 			limit = event.queryStringParameters.limit;
-		} 
+		}
 		if (
 			event.queryStringParameters.startkey !== undefined &&
 			event.queryStringParameters.startkey !== null &&
@@ -27,13 +27,13 @@ module.exports.pagination = (event, context, callback) => {
 	}
 	let params = {
 		TableName: process.env.DYNAMODB_TABLE,
-		Limit: limit,
+		Limit: limit
 	};
 
 	if (startkey) {
 		params.ExclusiveStartKey = {
 			id: startkey
-		}
+		};
 	}
 	// fetch all video from the database
 	dynamoDb.scan(params, (error, result) => {
@@ -52,10 +52,7 @@ module.exports.pagination = (event, context, callback) => {
 					'Access-Control-Allow-Origin': '*', // Required for CORS support to work
 					'Access-Control-Allow-Credentials': true // Required for cookies, authorization headers with HTTPS
 				},
-				body: {
-					items: JSON.stringify(result.Items),
-					startkey: result.LastEvaluatedKey
-				}
+				body: JSON.stringify(result.Items)
 			};
 			callback(null, response);
 		}
