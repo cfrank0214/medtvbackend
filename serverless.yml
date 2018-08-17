@@ -39,11 +39,11 @@ functions:
           method: get
           cors: true
 
-  list-test:
-    handler: videos/list-test.list
+  pagination:
+    handler: videos/pagination.pagination
     events:
       - http:
-          path: videos/list-test
+          path: videos/pagination
           method: get
           cors: true          
 
