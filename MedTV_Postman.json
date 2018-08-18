@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "2018-08-17T18:56:56Z",
+    "version": "2018-08-18T16:49:30Z",
     "title": "qa-medtvapi"
   },
   "host": "n1mr20dqxh.execute-api.us-east-2.amazonaws.com",
