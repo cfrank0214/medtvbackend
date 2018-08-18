@@ -39,14 +39,6 @@ functions:
           method: get
           cors: true        
 
-  get-tag:
-    handler: videos/get-tags.getByTags
-    events:
-      - http:
-          path: videos/list-tag
-          method: get
-          cors: true
-
   get:
     handler: videos/get.get
     events:

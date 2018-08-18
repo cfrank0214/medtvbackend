@@ -7,6 +7,7 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 module.exports.list = (event, context, callback) => {
 	let limit = 9;
 	let startkey = null;
+	let tag = null;
 	if (event.queryStringParameters !== null && event.queryStringParameters !== undefined) {
 		if (
 			event.queryStringParameters.limit !== undefined &&
@@ -24,6 +25,14 @@ module.exports.list = (event, context, callback) => {
 			console.log('Received startkey: ' + event.queryStringParameters.startkey);
 			startkey = event.queryStringParameters.startkey;
 		}
+		if (
+			event.queryStringParameters.tag !== undefined &&
+			event.queryStringParameters.tag !== null &&
+			event.queryStringParameters.tag !== ''
+		) {
+			console.log('Received tag: ' + event.queryStringParameters.tag);
+			tag = event.queryStringParameters.tag;
+		}
 	}
 	let params = {
 		TableName: process.env.DYNAMODB_TABLE,
@@ -35,6 +44,15 @@ module.exports.list = (event, context, callback) => {
 			id: startkey
 		};
 	}
+	if (tag) {
+		 params = {
+			TableName: process.env.DYNAMODB_TABLE,
+			FilterExpression: 'contains (tags, :tag)',
+			ExpressionAttributeValues: {':tag': tag,},
+		  };
+		
+	};
+	
 	// fetch all video from the database
 	dynamoDb.scan(params, (error, result) => {
 		if (error) {
