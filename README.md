@@ -156,10 +156,10 @@ How to get Postman working with this file:
 
 ## Authors
 
-* **Dylan Morsini** - *Initial work* - [DJMORSINI](https://github.com/djmorosini)
+* **Chris Frank** - *Initial work* - [CFRANK1977](https://github.com/cfrank1977)
 * **Florance Fong** - [FLOFONG](https://github.com/flofong)
 * **Julia Kantarovsky** - [JULIAKAN](https://github.com/JuliaKan)
-* **Chris Frank** - [CFRANK1977](https://github.com/cfrank1977)
+* **Dylan Morsini** - [DJMORSINI](https://github.com/djmorosini)
 * **Matt Layden** - [KOBELLO](https://github.com/kobello)
 
 See also the list of [contributors](https://github.com/djmorosini/medtv-react-app/contributors) who participated in this project.
