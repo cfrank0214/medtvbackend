@@ -43,7 +43,7 @@ functions:
     handler: videos/get-tags.getByTags
     events:
       - http:
-          path: videos/list-tag/{tag}
+          path: videos/list-tag
           method: get
           cors: true
 
@@ -78,14 +78,26 @@ resources:
       DeletionPolicy: Retain
       Properties:
         AttributeDefinitions:
-          -
-            AttributeName: id
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: tags
             AttributeType: S
         KeySchema:
-          -
-            AttributeName: id
+          - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+        GlobalSecondaryIndexes:
+          - IndexName: TagsIndex
+            KeySchema:
+              - AttributeName: tags
+                KeyType: HASH
+            Projection:
+              NonKeyAttributes:
+                - title
+              ProjectionType: INCLUDE
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 1
         TableName: ${self:provider.environment.DYNAMODB_TABLE}
