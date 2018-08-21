@@ -33,6 +33,7 @@ module.exports.list = (event, context, callback) => {
 			console.log('Received tag: ' + event.queryStringParameters.tag);
 			tag = event.queryStringParameters.tag;
 			tag = tag.toLowerCase();
+			console.log(`the tag is: ${tag}`)
 		}
 	}
 	let params = {
