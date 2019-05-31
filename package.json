@@ -5,10 +5,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "serverless": "^1.29.2",
-    "uuid": "^2.0.3"
+    "serverless": "^1.44.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "serverless-domain-manager": "^2.6.0"
+    "serverless-domain-manager": "^3.2.2"
   }
 }
