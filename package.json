@@ -9,6 +9,6 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "serverless-domain-manager": "^3.3.1"
+    "serverless-domain-manager": "^4.0.0"
   }
 }
